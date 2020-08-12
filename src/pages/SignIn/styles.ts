@@ -24,14 +24,13 @@ export const FormContainer = styled.div`
   border-radius: 10px;
 
   > strong {
-    font-size: 30px;
+    font-size: 42px;
     margin-bottom: 30px;
     font-family: 'Baloo Tamma 2', cursive;
     letter-spacing: 3px;
 
     color: #054f75;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   > input {

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 
 import { HeaderContainer, Profile, BadgeAdmin, LogoutContainer } from './styles';
+import { useHistory } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const history = useHistory();
+
+  const handleNavigateToPageSign = useCallback(() => {
+    history.push('/');
+  }, [history]);
+
   return (
     <HeaderContainer>
       <h1>ACCESS</h1>
@@ -16,7 +23,7 @@ const Header: React.FC = () => {
           ADMIN
         </BadgeAdmin>
 
-        <LogoutContainer>
+        <LogoutContainer onClick={handleNavigateToPageSign}>
           <FiLogOut size={14} />
           SAIR
         </LogoutContainer>

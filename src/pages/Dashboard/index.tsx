@@ -12,7 +12,9 @@ const Dashboard: React.FC = () => {
       <Header />
 
       <Content>
-        <Title><FaList /> PRODUTOS</Title>
+        <Title>
+          <FaList /> PRODUTOS
+        </Title>
 
         <ProductList>
           <ProductItem
@@ -24,6 +26,17 @@ const Dashboard: React.FC = () => {
             title="Mapa do Maroto"
             imageUrl="https://vignette.wikia.nocookie.net/harrypotter/images/4/4c/Marauders-Map-Prop-Replica-Mapa-Maroto-01.jpg/revision/latest?cb=20150115181627&path-prefix=pt-br"
           />
+
+          <ProductItem
+            title="Diario de Tom Riddle"
+            imageUrl="https://ekameco.com/wp-content/uploads/2019/03/product-placeholder-300x300.jpg"
+          />
+
+          <ProductItem
+            title="Pombo de ouro"
+            imageUrl="https://cdn.awsli.com.br/600x700/1158/1158330/produto/43727957/12f120e64f.jpg"
+          />
+
 
           <ProductItem
             title="Diario de Tom Riddle"

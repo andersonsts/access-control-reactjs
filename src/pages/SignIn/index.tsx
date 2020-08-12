@@ -1,9 +1,15 @@
-import React from 'react';
-// import { FaUser, FaKey } from 'react-icons/fa';
+import React, { useCallback } from 'react';
 
 import { Container, FormContainer } from './styles';
+import { useHistory } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
+    const history = useHistory();
+
+    const handleDashboard = useCallback(() => {
+      history.push('/dashboard');
+    }, [history]);
+
     return (
       <Container>
         <FormContainer>
@@ -13,7 +19,7 @@ const SignIn: React.FC = () => {
 
           {/* <FaUser color="#5499" size={20} />
           <FaKey color="#5499" size={20} /> */}
-          <button>
+          <button type="button" onClick={handleDashboard}>
             Login
           </button>
         </FormContainer>

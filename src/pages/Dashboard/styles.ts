@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
   width: 100%;
 
   background: #eee;
+
+  padding-bottom: 40px;
 `;
 
 export const Content = styled.div`
@@ -12,7 +13,6 @@ export const Content = styled.div`
   flex-direction: column;
   padding-top: 120px;
   width: 100%;
-  height: 100%;
 `;
 
 export const Title = styled.strong`
@@ -34,14 +34,24 @@ export const Title = styled.strong`
 `;
 
 export const ProductList = styled.div`
-  display: flex;
-  padding: 0px 20px;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10px;
+  row-gap: 40px;
+  justify-items: center;
 
-  & > div + div {
-    margin-left: 20px;
+  @media(min-width: 700px) { /** min-width: 700px -> Acima de 700px, faça... | max-width: 700px -> Abaixo de 700px, faça... */
+    grid-template-columns: repeat(2, 1fr);
   }
+
+  @media(min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media(min-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  width: 100%;
 `;
 
