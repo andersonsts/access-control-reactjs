@@ -3,7 +3,7 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   height: 100%;
-  background-image: linear-gradient(-120deg, #054f77, #021490);
+  background-image: linear-gradient(-120deg, #054f77, #054170);
 
   display: flex;
   align-items: center;
@@ -61,8 +61,9 @@ export const FormContainer = styled.div`
     background: #054f75;
     width: 100%;
     padding: 10px;
+    height: 45px;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-top: 24px;
     font-size: 18px;
     text-transform: uppercase;
