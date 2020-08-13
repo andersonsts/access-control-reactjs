@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useRef, useEffect } from 'react';
+import React, { InputHTMLAttributes, useRef, useEffect, useCallback, useState } from 'react';
 
 import { Container } from './styles';
 import { IconBaseProps } from 'react-icons/lib';
@@ -8,20 +8,35 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   containerStyle?: object;
   icon?: React.ComponentType<IconBaseProps>;
+  placeholderText: string;
 }
 
 const Input: React.FC<InputProps> = ({
   name,
+  placeholderText,
   containerStyle = {},
   icon: Icon,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
   const { fieldName,
     // defaultValue,
     // error,
     registerField } = useField(name);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+
+    setIsFilled(!!inputRef.current?.value);
+  }, []);
 
   useEffect(() => {
     registerField({
@@ -32,12 +47,21 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container style={containerStyle}>
+    <Container
+      isFilled={isFilled}
+      isFocused={isFocused}
+      style={containerStyle}
+    >
       {Icon && <Icon size={20} />}
       <input
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
         ref={inputRef}
         {...rest}
       />
+      <label htmlFor={name}>
+        <span>{placeholderText}</span>
+      </label>
     </Container>
   )
 }

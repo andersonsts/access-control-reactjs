@@ -23,8 +23,8 @@ const SignIn: React.FC = () => {
         <h1>PERMISSION</h1>
 
         <Form ref={formRef} onSubmit={() => {}}>
-          <Input name="email" placeholder="Username" />
-          <Input name="password" type="password" placeholder="Senha" />
+          <Input name="username" placeholderText="Username" />
+          <Input name="password" type="password" placeholderText="Senha" />
 
           <Button type="submit">Entrar</Button>
         </Form>

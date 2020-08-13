@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
-  background-image: linear-gradient(-120deg, #054f77, #054170);
+  background-image: linear-gradient(-120deg, #054170, #000);
 
   display: flex;
   align-items: center;
@@ -37,10 +37,9 @@ export const AnimationContainer = styled.div`
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 
   > h1 {
-    color: #0e4f99;
+    color: #054f77;
     font-family: 'Roboto', sans-serif;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   form {
@@ -48,6 +47,5 @@ export const AnimationContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
   }
 `;
