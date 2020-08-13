@@ -1,30 +1,36 @@
-import React, { useCallback } from 'react';
+import React, {
+  // useCallback,
+  useRef } from 'react';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 
-import { Container, FormContainer } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Container, AnimationContainer } from './styles';
+// import { useHistory } from 'react-router-dom';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const SignIn: React.FC = () => {
-    const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
+  // const history = useHistory();
 
-    const handleDashboard = useCallback(() => {
-      history.push('/dashboard');
-    }, [history]);
+  // const handleDashboard = useCallback(() => {
+  //   history.push('/dashboard');
+  // }, [history]);
 
-    return (
-      <Container>
-        <FormContainer>
-          <strong>ACCESS</strong>
-          <input type="text" placeholder="Username" />
-          <input type="text" placeholder="Password" />
+  return (
+    <Container>
+      <AnimationContainer>
+        <h1>PERMISSION</h1>
 
-          {/* <FaUser color="#5499" size={20} />
-          <FaKey color="#5499" size={20} /> */}
-          <button type="button" onClick={handleDashboard}>
-            Login
-          </button>
-        </FormContainer>
-      </Container>
-    )
+        <Form ref={formRef} onSubmit={() => {}}>
+          <Input name="email" placeholder="Username" />
+          <Input name="password" type="password" placeholder="Senha" />
+
+          <Button type="submit">Entrar</Button>
+        </Form>
+      </AnimationContainer>
+    </Container>
+  )
 }
 
 export default SignIn;

@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
@@ -10,70 +9,45 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const FormContainer = styled.div`
-  background: #ffe;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromLeft} 1s;
+
+  width: 430px;
+  max-width: 90%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  width: min(100vw, 400px);
-  padding: 40px 25px;
-
+  padding: 40px 30px;
+  background: #fff;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 
-  > strong {
-    font-size: 42px;
-    margin-bottom: 30px;
-    font-family: 'Baloo Tamma 2', cursive;
-    letter-spacing: 3px;
-
-    color: #054f75;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  > h1 {
+    color: #0e4f99;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
   }
 
-  > input {
-    margin: 15px 0px;
+  form {
     width: 100%;
-    border: 0;
-    outline: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    padding: 10px 10px;
-    font-size: 18px;
-
-    transition: border-bottom 0.24s ease-in-out;
-
-    &::placeholder {
-      color: #666;
-    }
-
-    color: #444;
-
-    &:focus {
-      border-bottom: 2px solid #000090;
-    }
-  }
-
-  > button {
-    border: 0;
-    outline: 0;
-    background: #054f75;
-    width: 100%;
-    padding: 10px;
-    height: 45px;
-    color: #fff;
-    border-radius: 8px;
-    margin-top: 24px;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-
-    transition: background 0.25s ease-in-out;
-
-    &:hover {
-      background: ${darken(0.02, '#054f75')};
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
   }
 `;
