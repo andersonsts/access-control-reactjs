@@ -27,4 +27,10 @@ export const Container = styled.button`
     &:hover {
       background: ${darken(0.02, '#054f77')};
     }
+
+    > svg {
+      margin-right: 10px;
+      margin-bottom: 2px;
+      font-size: 20px;
+    }
 `;

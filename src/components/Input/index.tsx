@@ -52,7 +52,6 @@ const Input: React.FC<InputProps> = ({
       isFocused={isFocused}
       style={containerStyle}
     >
-      {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
@@ -61,6 +60,7 @@ const Input: React.FC<InputProps> = ({
       />
       <label htmlFor={name}>
         <span>{placeholderText}</span>
+        {Icon && <Icon size={20} />}
       </label>
     </Container>
   )

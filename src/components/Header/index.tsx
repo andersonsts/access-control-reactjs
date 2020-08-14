@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <h1>ACCESS</h1>
+      <h1>PERMISSION</h1>
 
       <Profile>
         <img src="https://vignette.wikia.nocookie.net/harrypotter/images/2/20/Albus_Dumbledore.JPG/revision/latest/scale-to-width-down/340?cb=20130113191343&path-prefix=pt-br" alt="O brabo"/>

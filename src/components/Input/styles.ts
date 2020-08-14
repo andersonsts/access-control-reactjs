@@ -20,7 +20,7 @@ export const Container = styled.div<ContainerProps>`
     width: 100%;
     height: 100%;
     pointer-events: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
     &::after {
       content: "";
@@ -38,12 +38,25 @@ export const Container = styled.div<ContainerProps>`
       `};
     }
 
+    > svg {
+      position: absolute;
+      right: 4px;
+      bottom: 7px;
+      color: rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease-in-out;
+
+      ${props => (props.isFocused || props.isFilled) && css`
+        transform: translateX(-10%);
+        color: #054f77;
+      `};
+    }
+
     span {
       position: absolute;
       bottom: 4px;
       left: 0px;
       transition: all 0.3s ease;
-      color: #666;
+      color: #555;
       font-size: 18px;
 
       ${props => (props.isFocused || props.isFilled) && css`
@@ -61,6 +74,7 @@ export const Container = styled.div<ContainerProps>`
     border: 0;
     outline: 0;
     padding-top: 20px;
+    padding-right: 30px;
     padding-bottom: 4px;
     font-size: 18px;
     transition: all 0.2s;
