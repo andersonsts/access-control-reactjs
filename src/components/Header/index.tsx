@@ -2,14 +2,14 @@ import React, { useCallback } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 
 import { HeaderContainer, Profile, BadgeAdmin, LogoutContainer } from './styles';
-import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
-  const history = useHistory();
+  const { signOut } = useAuth();
 
-  const handleNavigateToPageSign = useCallback(() => {
-    history.push('/');
-  }, [history]);
+  const handleLogout = useCallback(() => {
+    signOut();
+  }, [signOut]);
 
   return (
     <HeaderContainer>
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           ADMIN
         </BadgeAdmin>
 
-        <LogoutContainer onClick={handleNavigateToPageSign}>
+        <LogoutContainer onClick={handleLogout}>
           <FiLogOut size={14} />
           SAIR
         </LogoutContainer>

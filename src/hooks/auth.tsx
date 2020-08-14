@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
+import api from '../services/api';
 
 interface User {
   id: string;
@@ -21,7 +22,7 @@ interface SignInCredentials {
 interface AuthContextData {
   user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
-  // signOut(): void;
+  signOut(): void;
   // updateUser(user: User): void;
 }
 
@@ -33,7 +34,7 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@Permission:user');
 
     if(user && token) {
-      // api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
       return { token, user: JSON.parse(user) };
     }
@@ -42,25 +43,30 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ username, password }) => {
-    // const response = awa//
+    const response = await api.post('sessions', {
+      username,
+      password
+    });
 
-    // localStorage.setItem('@Permission:token', token);
-    // localStorage.setItem('@Permission:user', JSON.stringfy(user));
+    const { token, user } = response.data;
 
-    // api.defaults.headers.authorization = `Bearer ${token}`
+    localStorage.setItem('@Permission:token', token);
+    localStorage.setItem('@Permission:user', JSON.stringify(user));
 
-    // setData({ token, user });
+    api.defaults.headers.authorization = `Bearer ${token}`
+
+    setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    // localStorage.removeItem('@Permission:token');
-    // localStorage.removeItem('@Permission:user');
+    localStorage.removeItem('@Permission:token');
+    localStorage.removeItem('@Permission:user');
 
     setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

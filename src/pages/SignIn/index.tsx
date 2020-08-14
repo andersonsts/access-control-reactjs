@@ -8,7 +8,8 @@ import { Container, Content, AnimationContainer, Background, ContentDescription 
 import { useHistory } from 'react-router-dom';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { FaKey, FaUser, FaSignInAlt } from 'react-icons/fa';
+import { FaKey, FaUser } from 'react-icons/fa';
+import { useAuth } from '../../hooks/auth';
 
 interface SignInFormData {
   username: string;
@@ -19,10 +20,20 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  const handleSubmit = useCallback((data: SignInFormData) => {
-    console.log(data);
-    history.push('/dashboard');
-  }, [history]);
+  const { signIn } = useAuth();
+
+  const handleSubmit = useCallback(async (data: SignInFormData) => {
+    try {
+      await signIn({
+        username: data.username,
+        password: data.password
+      });
+
+      history.push('/dashboard');
+    } catch(err) {
+      return;
+    }
+  }, [history, signIn]);
 
   return (
     <Container>
@@ -30,6 +41,7 @@ const SignIn: React.FC = () => {
         <ContentDescription>
           <h1>Permission Access</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae eos minima, eaque sed delectus laboriosam ab eius, saepe dolor, ea assumenda temporibus tenetur doloremque et magnam! Error molestias porro distinctio!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </ContentDescription>
         </Background>
 
@@ -44,7 +56,7 @@ const SignIn: React.FC = () => {
           <Input name="password" type="password" icon={FaKey} placeholderText="Senha" />
 
           <Button type="submit">
-            <FaSignInAlt /> Entrar
+            Entrar
           </Button>
         </Form>
       </AnimationContainer>
