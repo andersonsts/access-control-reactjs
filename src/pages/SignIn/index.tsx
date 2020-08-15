@@ -1,6 +1,6 @@
 import React, {
   // useCallback,
-  useRef, useCallback } from 'react';
+  useRef, useCallback, useEffect } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
@@ -10,6 +10,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { FaKey, FaUser } from 'react-icons/fa';
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 interface SignInFormData {
   username: string;
@@ -21,6 +22,15 @@ const SignIn: React.FC = () => {
   const history = useHistory();
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    addToast({
+      type: 'info',
+      title: 'Erro na autenticação',
+      description: 'efjabfaebfeajhb'
+    });
+  }, [addToast]);
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {

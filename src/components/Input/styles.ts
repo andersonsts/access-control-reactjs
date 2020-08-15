@@ -9,7 +9,7 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   width: 100%;
   position: relative;
-  background: green;
+  background: transparent;
   height: 50px;
   overflow: hidden;
 
@@ -78,6 +78,7 @@ export const Container = styled.div<ContainerProps>`
     padding-bottom: 4px;
     font-size: 18px;
     transition: all 0.2s;
+    background: transparent;
   }
 
   & + div {
